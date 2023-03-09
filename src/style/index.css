@@ -1,0 +1,134 @@
+@font-face {
+  font-family: Roboto;
+  src: url("../style/font/Roboto_Slab/static/RobotoSlab-ExtraBold.ttf");
+}
+
+@font-face {
+  font-family: Roboto_Medium;
+  src: url("../style/font/Roboto_Slab/static/RobotoSlab-Medium.ttf");
+}
+
+@font-face {
+  font-family: Roboto_Regular;
+  src: url("../style/font/Roboto_Slab/static/RobotoSlab-Regular.ttf");
+}
+
+@font-face {
+  font-family: Inter;
+  src: url("../style/font/Inter/static/Inter-Medium.ttf");
+}
+
+html,
+body {
+  overflow-y: hidden;
+  margin: 0px;
+  height: 100%;
+  background-color: whitesmoke;
+  box-sizing: border-box;
+}
+
+.row-main {
+  height: 42.5vh;
+}
+
+.transform-click {
+  transform: scale(0.9, 0.9);
+}
+
+.col-4 {
+  position: relative;
+  background-color: #cbeef3;
+  transform: scale(1, 1);
+}
+
+.col-main {
+  height: 100%;
+  border: 1px solid black;
+}
+
+.warning {
+  position: absolute;
+  width: 100%;
+  height: inherit;
+  background-color: #dd2d4a;
+  padding: 1em;
+  opacity: 100%;
+}
+
+.main-content {
+  width: 100%;
+  height: inherit;
+  padding: 15px;
+}
+
+.number-card-container {
+  width: fit-content;
+  position: absolute;
+  height: fit-content;
+}
+
+.icon-card-container {
+  width: inherit;
+  height: 100%;
+}
+
+.icon-container {
+  width: 9vw;
+  height: 9vw;
+  margin-bottom: 3.5vh;
+}
+
+.icon-content {
+  background-size: cover;
+  width: inherit;
+  height: inherit;
+}
+
+.caption-card-container {
+  width: inherit;
+}
+
+.caption-container {
+  width: inherit;
+  height: inherit;
+  margin-bottom: 1.5vh;
+}
+
+.content-card {
+  height: 100%;
+  background-color: #cbeef3;
+  position: relative;
+  overflow: hidden;
+}
+
+.number {
+  margin: 0px auto;
+  margin-top: -2vh;
+  padding-left: 2.5vh;
+  font-size: 10vh;
+  font-family: Roboto;
+  color: black;
+}
+
+.caption {
+  line-height: 100%;
+  font-size: 5.3vh;
+  margin: 0px auto;
+  padding-bottom: 5px;
+  font-family: Roboto_Regular;
+  color: black;
+}
+
+.power-col {
+  background-color: #00dfff;
+}
+
+.row-footer {
+  height: 100%;
+  background-color: #72eafb;
+  height: 15vh;
+}
+
+#back-icon {
+  transform: rotate(180deg);
+}
