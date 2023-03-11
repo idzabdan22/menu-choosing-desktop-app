@@ -20,68 +20,114 @@
 
 html,
 body {
-  overflow-y: hidden;
-  margin: 0px;
   height: 100%;
-  background-color: whitesmoke;
+  width: 100%;
+  margin: auto 0;
+  padding: 0;
+  background-color: gainsboro;
   box-sizing: border-box;
 }
 
-.row-main {
-  height: 42.5vh;
-}
-
-.transform-click {
-  transform: scale(0.9, 0.9);
-}
-
-.col-4 {
-  position: relative;
-  background-color: #cbeef3;
-  transform: scale(1, 1);
-}
-
-.col-main {
-  height: 100%;
-  border: 1px solid black;
-}
-
-.warning {
-  position: absolute;
-  width: 100%;
-  height: inherit;
+#main-container {
   background-color: #dd2d4a;
-  padding: 1em;
-  opacity: 100%;
-}
-
-.main-content {
   width: 100%;
-  height: inherit;
-  padding: 15px;
-}
-
-.number-card-container {
-  width: fit-content;
-  position: absolute;
-  height: fit-content;
-}
-
-.icon-card-container {
-  width: inherit;
   height: 100%;
+  margin: auto 0;
+  padding: 0;
 }
 
-.icon-container {
-  width: 9vw;
-  height: 9vw;
-  margin-bottom: 3.5vh;
+/* BOOTSTRAP GENERAL STYLE SECTION */
+.col, .col-1, .col-2, .col-3,
+.col-4, .col-5, .col-6, .col-7,
+.col-8, .col-9, .col-10, .col-11, .col-12 {
+  border: 1px solid black;
 }
 
 .icon-content {
   background-size: cover;
   width: inherit;
   height: inherit;
+}
+
+/* END OF BOOTSTRAP GENERAL STYLE SECTION */
+
+
+/* MAIN CONTENT STYLE SECTION */
+
+.clicked-container {
+  width: 100%;
+  height: 100%;
+  background-color: #cbeef3;
+  /* transform: scale(0.9, 0.9); */
+}
+
+.content-container {
+  height: 85vh;
+  width: 100%;
+  position: relative;
+  background-color: white;
+}
+
+.overlay {
+  height: inherit;
+  width: inherit;
+  position: absolute;
+}
+
+.row-main {
+  width: 100%;
+  height: 42.5vh;
+}
+
+.main-content {
+  position: absolute;
+  width: 100%;  
+  height: 100%;
+  padding: 15px;
+  z-index: 2;
+}
+
+#menu-content-container {
+  position: relative;
+  background-color: black;
+}
+
+.warning {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #dd2d4a;
+  opacity: 100%;
+  z-index: 1;
+  display: none;
+}
+
+.content-card {
+  width: 100%;
+  height: 100%;
+  background-color: #cbeef3;
+  position: relative;
+}
+
+.number {
+  margin: 0px auto;
+  margin-top: -2vh;
+  padding-left: 2.5vh;
+  font-size: 10vh;
+  font-family: Roboto;
+  color: black;
+}
+
+.number-card-container {
+  width: fit-content;
+  height: fit-content;
+  position: absolute;
+}
+
+.icon-container {
+  width: 9vw;
+  height: 9vw;
+  margin-bottom: 3.5vh;
 }
 
 .caption-card-container {
@@ -94,20 +140,37 @@ body {
   margin-bottom: 1.5vh;
 }
 
-.content-card {
+.icon-card-container {
+  width: inherit;
   height: 100%;
-  background-color: #cbeef3;
-  position: relative;
-  overflow: hidden;
 }
 
-.number {
-  margin: 0px auto;
-  margin-top: -2vh;
-  padding-left: 2.5vh;
-  font-size: 10vh;
-  font-family: Roboto;
-  color: black;
+/* END OF MAIN CONTENT STYLE SECTION */
+
+
+/* FOOTER STYLE SECTION */
+.footer-content {
+  height: 100%;
+}
+
+.mode-fc {
+  width: fit-content;
+  height: fit-content;
+}
+
+.power-fc {
+  width: 9vh;
+  height: 9vh;
+}
+
+.filkom-logo-fc {
+  width: 40vh;
+  height: 10vh;
+}
+
+.info-fc {
+  width: 10vh;
+  height: 10vh;
 }
 
 .caption {
@@ -119,16 +182,12 @@ body {
   color: black;
 }
 
-.power-col {
-  background-color: #00dfff;
-}
-
-.row-footer {
-  height: 100%;
-  background-color: #72eafb;
+#footer-container {
+  background-color: cyan;
   height: 15vh;
 }
 
 #back-icon {
   transform: rotate(180deg);
 }
+/* END OF FOOTER STYLE SECTION */

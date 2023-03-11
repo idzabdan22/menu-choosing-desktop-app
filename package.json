@@ -6,7 +6,7 @@
   "license": "MIT",
   "scripts": {
     "start": "electron .",
-    "build": "webpack ./src/js/http.js /dist/main.js",
+    "build": "webpack ./src/js/index.js /dist/main.js",
     "build:p": "webpack {target} dist/bundle.js -p"
   },
   "devDependencies": {

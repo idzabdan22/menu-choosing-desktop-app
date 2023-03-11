@@ -27,7 +27,7 @@ const getDesktopCaptureSource = async (browserWindow) => {
 
 const createWindow = () => {
   const win = new BrowserWindow({
-    width: 600,
+    width: 650,
     height: 400,
     frame: true,
     webPreferences: {

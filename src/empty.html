@@ -2,61 +2,81 @@
 <html>
   <head>
     <meta charset="UTF-8" />
-    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
-    <!-- <meta
-      http-equiv="Content-Security-Policy"
-      content="default-src 'self'; script-src 'self'"
-    /> -->
-    <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Hello World!</title>
-    <link
-      rel="stylesheet"
-      href="../node_modules/bootstrap/dist/css/bootstrap.min.css"
-    />
+    <title>Smart Wheelchair Menu</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="style/index.css" />
-    <!-- <script defer src="../src/js/videoHandler.js"></script>
-    <script defer src="../src/js/websocket.js"></script> -->
     <script defer src="../dist/main.js"></script>
   </head>
   <body>
-    <div class="container-fluid text-center vh-100" id="main-container">
-      <div class="" id="menu-container" style="height: 85vh; width: inherit;"></div>
-      <div class="row row-footer" id="footer-container">
-          <div class="col-1 g-0 col-main col_footer">
-            <div class="container-fluid d-flex justify-content-center align-items-center" style="width: 100%; height: inherit; background-color: red; overflow: hidden;">
-              <div class="" style="width: 9.5vh; height: 9.5vh;">
-                <img src="icon/power.png" class="img-responsive icon-content" alt="">
+    <div class="text-center" id="main-container">
+      <!-- main-content container -->
+      <section class="content-container">
+      <!-- main-row layer -->
+      <div class="overlay" id="menu-container"></div>
+      <!-- end of main-row layer -->
+      <!-- info layer -->
+      <!-- <div class="overlay" style="background-color: burlywood;">
+          <div class="container-fluid" style="width: inherit; height: inherit;">
+            <div class="row" style="width: inherit; height: inherit;">
+              <div class="col" style="background-color: aqua; height: inherit;">
+                
+              </div>
+              <div class="col" style="background-color: blueviolet; height: inherit;">
+                
               </div>
             </div>
           </div>
-          <div class="col-5 g-0 col-main col_footer">
-            <div class="container-fluid d-flex justify-content-center align-items-center" style="width: 100%; height: inherit; background-color: #72EAFB; overflow: hidden;">
-              <div class="" style="width: fit-content; height: fit-content;">       
-                <p class="caption">Mode: <span id="mode">Head Movement</span></p> 
+        </div> -->
+      <!-- end of info layer -->
+      <!-- camera-show layer -->
+      <!-- <div class="overlay" id="info" style="background-color: white;"></div> -->
+      <!-- end of camera-show layer -->
+
+
+      </section>
+
+      <!-- end of main-content container -->
+        
+        
+        
+      <section class="">
+        <div class="row mx-auto" id="footer-container">
+            <div class="col-1 g-0">
+              <div class="container-fluid d-flex justify-content-center align-items-center footer-content">
+                <div class="power-fc">
+                  <img src="icon/power.png" class="icon-content">
+                </div>
+              </div>
+            </div>
+            <div class="col-5 g-0">
+              <div class="container-fluid d-flex justify-content-center align-items-center footer-content">
+                <div class="mode-fc">       
+                  <p class="caption">Mode: <span id="mode">Head Movement</span></p> 
+                </div>
+              </div>
+            </div>
+            <div class="col-3 g-0">
+              <div class="container-fluid d-flex justify-content-center align-items-center footer-content">
+                <div class="filkom-logo-fc">
+                  <img src="icon/filkom.png" class="icon-content">
+                </div>
+              </div>
+            </div>
+            <div class="col-2 g-0">
+              <div class="container-fluid d-flex justify-content-around align-items-center footer-content" id="page-container">
+              </div>
+            </div>
+            <div class="col-1 g-0">
+              <div class="container-fluid d-flex justify-content-center align-items-center footer-content">
+                <div class="info-fc">
+                  <img src="icon/info.png" class="icon-content">
+                </div>
               </div>
             </div>
           </div>
-          <div class="col-3 g-0 col-main col_footer">
-            <div class="container-fluid d-flex justify-content-center align-items-center" style="width: 100%; height: inherit; background-color: #72EAFB; overflow: hidden;">
-              <div class="" style="width: 40vh; height: 10vh;">
-                <img src="icon/filkom.png" class="img-responsive icon-content" alt="">
-              </div>
-            </div>
-          </div>
-          <div class="col-2 g-0 col-main col_footer" style="display: block">
-            <div class="container-fluid d-flex justify-content-around align-items-center" id="page-container" style="width: 100%; height: inherit; background-color: #72EAFB; overflow: hidden;">
-            </div>
-          </div>
-          <div class="col-1 g-0 col-main col_footer">
-            <div class="container-fluid d-flex justify-content-center align-items-center" style="width: 100%; height: inherit; background-color: #72EAFB; overflow: hidden;">
-              <div class="" style="width: 10vh; height: 10vh;">
-                <img src="icon/info.png" class="img-responsive icon-content" alt="">
-              </div>
-            </div>
-          </div>
-        </div>
+      </section>
     </div>
   </body>
 </html>
