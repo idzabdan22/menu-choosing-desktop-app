@@ -67,7 +67,7 @@ body {
   width: 100%;
   height: 100%;
   background-color: #cbeef3;
-  /* transform: scale(0.9, 0.9); */
+  transform: scale(1, 1);
 }
 
 .content-container {
@@ -96,7 +96,8 @@ body {
   z-index: 2;
 }
 
-#menu-content-container {
+/* COL */
+#menu-content-container { 
   position: relative;
   background-color: black;
 }
@@ -106,7 +107,7 @@ body {
   width: 100%;
   height: 100%;
   background-color: #dd2d4a;
-  opacity: 100%;
+  opacity: 0%;
   z-index: 1;
   display: none;
 }

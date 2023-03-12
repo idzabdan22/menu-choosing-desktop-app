@@ -1,22 +1,36 @@
 {
-  "name": "menu_navigation",
+  "name": "my-webpack-project",
   "version": "1.0.0",
   "main": "src/index.js",
   "author": "abdan",
   "license": "MIT",
   "scripts": {
     "start": "electron .",
-    "build": "webpack ./src/js/index.js /dist/main.js",
-    "build:p": "webpack {target} dist/bundle.js -p"
+    "build": "webpack --mode=production --node-env=production",
+    "build:p": "webpack {target} dist/bundle.js -p",
+    "build:dev": "webpack --mode=development",
+    "build:prod": "webpack --mode=production --node-env=production",
+    "watch": "webpack --watch"
   },
   "devDependencies": {
+    "@babel/core": "^7.21.0",
+    "@babel/preset-env": "^7.20.2",
+    "@webpack-cli/generators": "^3.0.1",
+    "babel-loader": "^9.1.2",
+    "css-loader": "^6.7.3",
     "electron": "^23.1.2",
-    "webpack": "^5.75.0",
-    "webpack-cli": "^5.0.1"
+    "html-webpack-plugin": "^5.5.0",
+    "mini-css-extract-plugin": "^2.7.3",
+    "prettier": "^2.8.4",
+    "style-loader": "^3.3.1",
+    "webpack": "^5.76.1",
+    "webpack-cli": "^5.0.1",
+    "workbox-webpack-plugin": "^6.5.4"
   },
   "dependencies": {
     "@popperjs/core": "^2.11.6",
     "axios": "^1.3.4",
     "bootstrap": "^5.2.3"
-  }
+  },
+  "description": "My webpack project"
 }

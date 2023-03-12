@@ -34,10 +34,8 @@ const createWindow = () => {
     },
   });
 
-  win.loadFile("src/empty.html")
-  // win.loadFile("src/index.html");
-  // win.loadFile("src/index_copy.html");
-  //   win.maximize()
+  win.loadFile("src/template/index.html");
+  // win.maximize()
   browserWindow = win;
   return win;
 };

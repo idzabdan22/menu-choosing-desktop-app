@@ -10,6 +10,7 @@ window.addEventListener("load", async (e) => {
   const modeColumn = document.querySelector(".col-5");
   const infoElement = document.getElementById("info");
 
+  let blink = "";
   let state = 0;
 
   const showPageButton = (page, allPages) => {
@@ -28,7 +29,7 @@ window.addEventListener("load", async (e) => {
           "beforeend",
           `<a class="btn d-block" id="next" style="width: fit-content; height: fit-content;">
               <div class="" style="width: 10vh; height: 10vh;">
-                <img src="icon/next.png" class="img-responsive icon-content" alt="">
+                <img src="../icon/next.png" class="img-responsive icon-content" alt="">
               </div>
           </a>`
         );
@@ -42,7 +43,7 @@ window.addEventListener("load", async (e) => {
           "beforeend",
           `<a class="btn d-block" id="back" style="width: fit-content; height: fit-content;">
           <div class="" style="width: 10vh; height: 10vh;">
-          <img src="icon/next.png" class="img-responsive icon-content" id="back-icon" alt="">
+          <img src="../icon/next.png" class="img-responsive icon-content" id="back-icon" alt="">
               </div>
               </a>`
         );
@@ -50,7 +51,7 @@ window.addEventListener("load", async (e) => {
           "beforeend",
           `<a class="btn d-block" id="next" style="width: fit-content; height: fit-content;">
                     <div class="" style="width: 10vh; height: 10vh;">
-                      <img src="icon/next.png" class="img-responsive icon-content" alt="">
+                      <img src="../icon/next.png" class="img-responsive icon-content" alt="">
                     </div>
                 </a>`
         );
@@ -71,7 +72,7 @@ window.addEventListener("load", async (e) => {
           "beforeend",
           `<a class="btn d-block" id="back" style="width: fit-content; height: fit-content;">
               <div class="" style="width: 10vh; height: 10vh;">
-                <img src="icon/next.png" class="img-responsive icon-content" id="back-icon" alt="">
+                <img src="../icon/next.png" class="img-responsive icon-content" id="back-icon" alt="">
               </div>
           </a>`
         );
@@ -168,20 +169,13 @@ window.addEventListener("load", async (e) => {
     allColumn.forEach((element) => {
       element.addEventListener("click", () => {
         if (!state) {
-          infoElement.style.display = "block";
-          // const infoDiv = document.createElement('div')
-          // infoDiv.textContent = "ABDAN"
-          // infoDiv.style.width = "100%"
-          // infoDiv.style.height = "inherit";
-          // infoDiv.style.position = "absolute";
-          // infoDiv.style.backgroundColor = "white";
-          // contentContainer.appendChild(infoDiv)
-          setTimeout(() => {
-            infoElement.style.display = "none";
-          }, 5000);
-          blinking_column(element);
+          // infoElement.style.display = "block";
+          // setTimeout(() => {
+          //   infoElement.style.display = "none";
+          // }, 5000);
+          blink = blinking_column(element);
         } else {
-          clicked_column(element);
+          clicked_column(element, blink);
         }
         state = !state;
       });
@@ -197,13 +191,15 @@ window.addEventListener("load", async (e) => {
       }
       showPageButton(1, response.data["pages"]);
       addClickEvent();
-      alert("connection established");
     } catch (error) {
+      alert("connection failed");
       console.log(error);
     }
   });
 
-  ws.addEventListener("message", (e) => {});
+  ws.addEventListener("message", (e) => {
+
+  });
 
   ws.addEventListener("error", (e) => {
     alert("Connection Error");
