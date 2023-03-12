@@ -14,10 +14,9 @@ const getDesktopCaptureSource = async (browserWindow) => {
       if (source.name === mirrorWindowName) {
         console.log(source.name);
         console.log(source.id);
-        // for (let index = 0; index < 10; index++) {
-        //   browserWindow.webContents.send("SET_SOURCE", source.id);
+        browserWindow.webContents.send("SET_SOURCE", source.id);
+        // for (let index = 0; index < 100; index++) {
         // }
-          
       }
     });
   } catch (error) {
