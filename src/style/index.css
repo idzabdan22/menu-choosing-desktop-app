@@ -159,7 +159,7 @@ body {
 /* INFO STYLE SECTION */
 .info-header {
   height: 10%;
-  background-color: #cbeef3;
+  background-color: #72EAFB;
   border-bottom: 2.5px solid black;
 }
 
@@ -323,7 +323,7 @@ body {
 }
 
 #footer-container {
-  background-color: cyan;
+  background-color: #72EAFB;
   height: 15vh;
 }
 
