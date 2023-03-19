@@ -1,5 +1,6 @@
 import axios from "axios";
-import { blinking_column, clicked_column } from "./util.js";
+// import { blinking_column, clicked_column } from "./util.js";
+import { testGet } from "./tesget.js";
 
 window.addEventListener("load", async (e) => {
   const ws = new WebSocket("ws://127.0.0.1:3000/ws");
@@ -12,6 +13,7 @@ window.addEventListener("load", async (e) => {
 
   let blink = "";
   let state = 0;
+  let incomingMessage = "";
 
   const showPageButton = (page, allPages) => {
     if (!pageColumn) {
@@ -173,9 +175,9 @@ window.addEventListener("load", async (e) => {
           // setTimeout(() => {
           //   infoElement.style.display = "none";
           // }, 5000);
-          blink = blinking_column(element);
+          // blink = blinking_column(element);
         } else {
-          clicked_column(element, blink);
+          // clicked_column(element, blink);
         }
         state = !state;
       });
@@ -184,13 +186,15 @@ window.addEventListener("load", async (e) => {
 
   ws.addEventListener("open", async (e) => {
     try {
-      const response = await axios.get("http://127.0.0.1:3000/page=1");
-      const data = response.data["menu"];
-      for (let index = 0; index < Math.ceil(data.length / 3); index++) {
-        createRowMenu(data.slice(index * 3, 3 * (index + 1)), index * 3 + 1);
-      }
-      showPageButton(1, response.data["pages"]);
-      addClickEvent();
+      testGet();
+      // const response = await axios.get("http://127.0.0.1:3000/page=1");
+      // const data = response.data["menu"];
+      // for (let index = 0; index < Math.ceil(data.length / 3); index++) {
+      //   createRowMenu(data.slice(index * 3, 3 * (index + 1)), index * 3 + 1);
+      // }
+      // console.log(document.querySelectorAll(".clicked-container"));
+      // showPageButton(1, response.data["pages"]);
+      // addClickEvent();
     } catch (error) {
       alert("connection failed");
       console.log(error);
@@ -198,7 +202,7 @@ window.addEventListener("load", async (e) => {
   });
 
   ws.addEventListener("message", (e) => {
-
+    incomingMessage = e.data;
   });
 
   ws.addEventListener("error", (e) => {

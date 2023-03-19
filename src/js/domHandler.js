@@ -1,0 +1,169 @@
+"use strict";
+
+import axios from "axios";
+
+const DOMHandler = function () {
+  this.pageContainer = document.getElementById("page-container");
+  this.footerContainer = document.querySelector("#footer-container");
+  this.menuContainer = document.getElementById("menu-layer");
+  this.infoContainer = document.getElementById("info-layer");
+  this.cameraContainer = document.getElementById("camera-layer");
+  this.url = "http://127.0.0.1:3000";
+};
+
+DOMHandler.prototype.createDisplay = async function (page) {
+  try {
+    this.deleteRowMenu();
+    this.deletePageButton();
+    const response = await axios.get(`${this.url}/page=${page}`);
+    const data = response.data["menu"];
+    const allPages = response.data["pages"];
+    for (let index = 0; index < Math.ceil(data.length / 3); index++) {
+      this.createRowMenu(data.slice(index * 3, 3 * (index + 1)), index * 3 + 1);
+    }
+    this.showPageButton(page, allPages);
+    return {
+      data: data,
+      allPages: allPages,
+    };
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+DOMHandler.prototype.deleteRowMenu = function () {
+  const rows = document.querySelectorAll(".row-main");
+  if (!(rows.length > 0)) {
+    return;
+  } else {
+    rows.forEach((element) => {
+      this.menuContainer.removeChild(element);
+    });
+  }
+};
+
+DOMHandler.prototype.showPageButton = function (page, allPages) {
+  if (allPages === 1) {
+    return;
+  } else {
+    if (page === 1) {
+      this.pageContainer.insertAdjacentHTML(
+        "beforeend",
+        `<a class="btn d-block" style="width: fit-content; height: fit-content;">
+              <div class="" style="width: 10vh; height: 10vh;">
+                <img src="../icon/next.png" class="icon-content">
+              </div>
+          </a>`
+      );
+    } else if (page >= 2 && page < allPages) {
+      this.pageContainer.insertAdjacentHTML(
+        "beforeend",
+        `<a class="btn d-block" style="width: fit-content; height: fit-content;">
+              <div class="" style="width: 10vh; height: 10vh;">
+                <img src="../icon/next.png" class="icon-content" id="back-icon">
+              </div>
+          </a>`
+      );
+      this.pageContainer.insertAdjacentHTML(
+        "beforeend",
+        `<a class="btn d-block" style="width: fit-content; height: fit-content;">
+              <div class="" style="width: 10vh; height: 10vh;">
+                <img src="../icon/next.png" class="icon-content">
+              </div>
+          </a>`
+      );
+    } else {
+      this.pageContainer.insertAdjacentHTML(
+        "beforeend",
+        `<a class="btn d-block" style="width: fit-content; height: fit-content;">
+              <div class="" style="width: 10vh; height: 10vh;">
+                <img src="../icon/next.png" class="icon-content" id="back-icon">
+              </div>
+          </a>`
+      );
+    }
+  }
+};
+
+DOMHandler.prototype.parseIcon = function (icons) {
+  let data = ``;
+  icons.forEach((element) => {
+    data += `<div class="icon-container">
+                <img src=${this.url}/${element} class="icon-content">
+              </div>`;
+  });
+  return data;
+};
+
+DOMHandler.prototype.createRowMenu = function (menus, start_index) {
+  const newRow = document.createElement("div");
+  newRow.classList.add("row", "mx-auto", "row-main");
+
+  this.menuContainer.appendChild(newRow);
+
+  let counter = start_index;
+  menus.forEach((element) => {
+    newRow.insertAdjacentHTML(
+      "beforeend",
+      `<div class="col-4 g-0" id="menu-content-container">
+          <div class="clicked-container">
+            <div class="warning"></div>
+            <div class="main-content">
+              <div class="content-card d-flex flex-column justify-content-between align-items-start">
+                <div class="number-card-container d-flex">
+                  <p class="number">${counter}</p>
+                </div>
+                <div class="icon-card-container d-flex justify-content-center align-items-end">
+                  ${this.parseIcon(element.icon_path)}
+                </div>
+                <div class="d-flex justify-content-center caption-card-container">
+                  <div class="caption-container">       
+                    <p class="caption">${element.name}</p> 
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>`
+    );
+    counter++;
+  });
+};
+
+DOMHandler.prototype.deletePageButton = function () {
+  let btnAmount = this.pageContainer.querySelectorAll(".btn");
+  if (!(btnAmount.length > 0)) {
+    return;
+  } else {
+    btnAmount.forEach((btn) => {
+      this.pageContainer.removeChild(btn);
+    });
+  }
+};
+
+DOMHandler.prototype.switchLayer = function (layer) {
+  if (layer === "info") {
+    this.infoContainer.style.opacity = "100%";
+    this.cameraContainer.style.opacity = "0%";
+  } else if (layer === "camera") {
+    this.infoContainer.style.opacity = "0%";
+    this.cameraContainer.style.opacity = "100%";
+  } else {
+    this.infoContainer.style.opacity = "0%";
+    this.cameraContainer.style.opacity = "0%";
+  }
+};
+
+DOMHandler.prototype.requestStream = function () {
+  try {
+    window.EAPI.getStream();
+    const loading = document.querySelectorAll(".loading");
+    loading.forEach((element) => {
+      element.style.opacity = "100%";
+    });
+  } catch (error) {
+    console.log("FAILED", error);
+  }
+};
+
+export default DOMHandler;

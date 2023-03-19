@@ -1,28 +1,9 @@
 // import { app, BrowserWindow } from "electron";
-const { app, BrowserWindow, desktopCapturer } = require("electron");
+const { app, BrowserWindow, desktopCapturer, ipcMain } = require("electron");
 const path = require("path");
 
-const mirrorWindowName = "frame";
-let browserWindow = null;
-
-const getDesktopCaptureSource = async (browserWindow) => {
-  try {
-    const sources = await desktopCapturer.getSources({
-      types: ["window", "screen"],
-    });
-    sources.forEach((source) => {
-      if (source.name === mirrorWindowName) {
-        console.log(source.name);
-        console.log(source.id);
-        browserWindow.webContents.send("SET_SOURCE", source.id);
-        // for (let index = 0; index < 100; index++) {
-        // }
-      }
-    });
-  } catch (error) {
-    console.log(error);
-  }
-};
+const targetWindow = "frame";
+let target = "";
 
 const createWindow = () => {
   const win = new BrowserWindow({
@@ -34,15 +15,27 @@ const createWindow = () => {
     },
   });
 
+  ipcMain.on("GET_SOURCE_ID", async (_event) => {
+    try {
+      do {
+        const sources = await desktopCapturer.getSources({
+          types: ["window", "screen"],
+        });
+        target = sources.find((source) => source.name === targetWindow);
+        console.log("finding...");
+      } while (!target);
+      win.webContents.send("SET_SOURCE", target.id);
+    } catch (error) {
+      console.log(error);
+    }
+  });
+
+  // RENDER BROWSER
   win.loadFile("src/template/index.html");
-  // win.maximize()
-  browserWindow = win;
-  return win;
 };
 
 app.whenReady().then(() => {
-  const win = createWindow();
-  getDesktopCaptureSource(win);
+  createWindow();
 
   app.on("activate", () => {
     if (BrowserWindow.getAllWindows().length === 0) createWindow();

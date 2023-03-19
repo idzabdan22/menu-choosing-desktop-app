@@ -7,53 +7,201 @@
     <title>Smart Wheelchair Menu</title>
     <link rel="stylesheet" href="../../node_modules/bootstrap/dist/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="../style/index.css" />
+    <script defer src="../../src/js/videoHandler.js"></script>
     <script defer src="../../dist/main.js"></script>
-    <!-- <script defer src="../src/js/videoHandler.js"></script> -->
   </head>
   <body>
     <div class="text-center" id="main-container">
       <!-- main-content container -->
       <section class="content-container">
       <!-- main-row layer -->
-      <div class="overlay" id="menu-container">
-
+      <div class="overlay" id="menu-layer">
       </div>
       <!-- end of main-row layer -->
       <!-- info layer -->
-      <div class="overlay" style="background-color: burlywood; display: none;">
-        <div class="container-fluid" style="width: inherit; height: inherit;">
-          <div class="row" style="width: inherit; height: inherit;">
-            <div class="col" style="background-color: aqua; height: inherit;">
-                
+      <div class="overlay" id="info-layer">
+        <div class="row mx-auto" style="height: inherit;">
+            <div class="col g-0 info-container">
+                <div class="info-header d-flex justify-content-center align-items-center">
+                  <h3>Informasi Penggunaan</h3>
+                </div>
+                <div class="info-body d-flex justify-content-around align-items-center flex-wrap">
+                  <div class="card-component">
+                    <div class="card-header d-flex justify-content-around align-items-top">
+                      <div class="card-logo d-flex justify-content-center align-items-top">
+                        <div class="card-icon">
+                          <img src="../icon/speak_recolored.png" class="icon-content">
+                        </div>
+                      </div>
+                      <div class="card-desc d-flex justify-content-left align-items-center">
+                        <div class="card-desc-component-left d-flex justify-content-center align-items-center">
+                            <p class="card-desc-component-caption">"Satu"</p>
+                        </div>
+                        <div class="card-desc-component-right d-flex justify-content-center align-items-center">
+                            <p class="card-desc-component-caption">"Iya"</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="card-body">
+                      <div class="card-body-container d-flex justify-content-center align-items-center">
+                        <p class="card-body-text">Ucapkan nomor menu, kemudian ucapkan "iya" untuk memilih menu.</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card-component">
+                    <div class="card-header d-flex justify-content-around align-items-top">
+                      <div class="card-logo d-flex justify-content-center align-items-top">
+                        <div class="card-icon">
+                          <img src="../icon/speak_recolored.png" class="icon-content">
+                        </div>
+                      </div>
+                      <div class="card-desc d-flex justify-content-left align-items-center">
+                        <div class="card-desc-component-left d-flex justify-content-center align-items-center">
+                            <p class="card-desc-component-caption">"Next"</p>
+                        </div>
+                        <div class="card-desc-component-right d-flex justify-content-center align-items-center">
+                            <p class="card-desc-component-caption">"Back"</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="card-body">
+                      <div class="card-body-container d-flex justify-content-center align-items-center">
+                        <p class="card-body-text">Ucapkan next untuk halaman selanjutnya, Ucapkan back untuk halaman sebelumnya.</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card-component">
+                    <div class="card-header d-flex justify-content-around align-items-top">
+                      <div class="card-logo d-flex justify-content-center align-items-top">
+                        <div class="card-icon">
+                          <img src="../icon/speak_recolored.png" class="icon-content">
+                        </div>
+                      </div>
+                      <div class="card-desc d-flex justify-content-left align-items-center">
+                        <div class="card-desc-component-left d-flex justify-content-center align-items-center">
+                            <p class="card-desc-component-caption">"Mati"</p>
+                        </div>
+                        <div class="card-desc-component-right d-flex justify-content-center align-items-center">
+                            <p class="card-desc-component-caption">"Nyala"</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="card-body">
+                      <div class="card-body-container d-flex justify-content-center align-items-center">
+                        <p class="card-body-text">Ucapkan mati untuk mematikan voice command, Ucapkan nyala untuk menyalakan kembali.</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card-component">
+                    <div class="card-header d-flex justify-content-around align-items-top" style="height: 70%;">
+                      <div class="card-logo d-flex justify-content-center align-items-top" style="width: fit-content; height: 100%;" >
+                        <div class="card-icon" style="width: 17.5vh; height: 17.5vh; margin-left: -3vh;">
+                          <img src="../icon/speak_recolored.png" class="icon-content">
+                        </div>
+                      </div>
+                      <div class="card-desc d-flex justify-content-left align-items-center">
+                        <div class="card-desc-component-single d-flex justify-content-center align-items-center">
+                            <p class="card-desc-component-caption">"Info"</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="card-body" style="height: 30%; background-color: #ffb703; 
+                    border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;
+                    border-top: 4px black solid;">
+                      <div class="d-flex justify-content-center align-items-center" style="width: 100%; height: 100%;">
+                        <p style="display: block; margin: auto 0; font-weight: 450;">Ucapkan info untuk menampilkan informasi penggunaan sistem.</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card-component">
+                    <div class="card-header d-flex justify-content-around align-items-top" style="height: 70%;">
+                      <div class="card-logo d-flex justify-content-center align-items-top" style="width: fit-content; height: 100%;" >
+                        <div class="card-icon" style="width: 17.5vh; height: 17.5vh; margin-left: -3vh;">
+                          <img src="../icon/speak_recolored.png" class="icon-content">
+                        </div>
+                      </div>
+                      <div class="card-desc d-flex justify-content-left align-items-center">
+                        <div class="card-desc-component-single d-flex justify-content-center align-items-center">
+                            <p class="card-desc-component-caption">"Tidak"</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="card-body" style="height: 30%; background-color: #ffb703; 
+                    border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;
+                    border-top: 4px black solid;">
+                      <div class="d-flex justify-content-center align-items-center" style="width: 100%; height: 100%;">
+                        <p style="display: block; margin: auto 0; font-weight: 450;">Ucapkan tidak untuk membatalkan pemilihan menu.</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card-component">
+                    <div class="card-header d-flex justify-content-around align-items-top" style="height: 70%;">
+                      <div class="card-logo d-flex justify-content-center align-items-top" style="width: fit-content; height: 100%;" >
+                        <div class="card-icon" style="width: 17.5vh; height: 17.5vh; margin-left: -3vh;">
+                          <img src="../icon/speak_recolored.png" class="icon-content">
+                        </div>
+                      </div>
+                      <div class="card-desc d-flex justify-content-left align-items-center">
+                        <div class="card-desc-component-single d-flex justify-content-center align-items-center">
+                            <p class="card-desc-component-caption">"Keluar"</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="card-body" style="height: 30%; background-color: #ffb703; 
+                    border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;
+                    border-top: 4px black solid;">
+                      <div class="d-flex justify-content-center align-items-center" style="width: 100%; height: 100%;">
+                        <p style="display: block; margin: auto 0; font-weight: 450;">Ucapkan keluar untuk keluar dari menu.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="info-footer d-flex justify-content-center align-items-center">
+                    <p class="info-footer-caption">Tampilan ini akan ditutup dalam <span class="info-show-countdown">5</span> detik</p>
+                </div>
             </div>
-            <div class="col" style="background-color: blueviolet; height: inherit;">
-                
-            </div>
-          </div>
         </div>
       </div>
       <!-- end of info layer -->
       <!-- camera-show layer -->
-      <div class="overlay" id="info" style="background-color: white; display: none;">
-        <div class="row mx-auto" style="height: inherit;">
-          <div class="col g-0" style="background-color: burlywood; height: inherit;">
-            <div class="cam-header d-flex align-items-center justify-content-center" id="cam-1">
-              <div style="width: fit-content; height: fit-content;">
-                <h3>CAMERA 1</h3>
-              </div>
-            </div>
-            <div class="camera">
-              <video width="100%" height="100%" src="" id="camera-2"></video>
-            </div>
-          </div>
-          <div class="col g-0" style="background-color: bisque; height: inherit;">
-            <div class="cam-header d-flex align-items-center justify-content-center" id="cam-2">
+      <div class="overlay" id="camera-layer">
+        <div class="row mx-auto d-flex align-items-center justify-content-center" style="height: inherit; ">
+          <div class="col-6 g-0 info-container" style="border: 1px solid black;">
+            <div class="cam-header d-flex align-items-center justify-content-center" id="cam-2" style="border-bottom: 2px solid black; background-color: #cbeef3;">
               <div style="width: fit-content; height: fit-content;">
                 <h3>CAMERA 2</h3>
               </div>
             </div>
             <div class="camera">
-              <video width="100%" height="100%" src="" id="camera-2"></video>
+              <div class="camera-body">
+                <div class="" style="position: absolute; width: 100%; height: 100%; z-index: 1; ">
+                  <video width="100%" height="100%" src="" id="camera-2"></video>
+                </div>
+                <div class="loading d-flex align-items-center justify-content-center" style="position: absolute; width: 100%; height: 100%; z-index: 2;">
+                  <div class="" style="width: 20vh; height: 20vh;">
+                    <img src="../icon/spinner_fix.gif" class="icon-content">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-6 g-0 info-container" style="border: 1px solid black;">
+            <div class="cam-header d-flex align-items-center justify-content-center" id="cam-2" style="border-bottom: 2px solid black; background-color: #cbeef3;">
+              <div style="width: fit-content; height: fit-content;">
+                <h3>CAMERA 2</h3>
+              </div>
+            </div>
+            <div class="camera">
+              <div class="camera-body">
+                <div class="" style="position: absolute; width: 100%; height: 100%; z-index: 1; ">
+                  <video width="100%" height="100%" src="" id="camera-2"></video>
+                </div>
+                <div class="loading d-flex align-items-center justify-content-center" style="position: absolute; width: 100%; height: 100%; z-index: 2;">
+                  <div class="" style="width: 20vh; height: 20vh;">
+                    <img src="../icon/spinner_fix.gif" class="icon-content">
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -62,10 +210,10 @@
       </section>
       <!-- end of main-content container -->
         
-      <section class="">
-        <div class="row mx-auto" id="footer-container">
+      <section id="footer-container">
+        <div class="row mx-auto" style="height: 100%;">
             <div class="col-1 g-0">
-              <div class="container-fluid d-flex justify-content-center align-items-center footer-content">
+              <div class="container-fluid d-flex justify-content-center align-items-center footer-content" style="background-color: red;">
                 <div class="power-fc">
                   <img src="../icon/power.png" class="icon-content">
                 </div>
@@ -74,7 +222,7 @@
             <div class="col-5 g-0">
               <div class="container-fluid d-flex justify-content-center align-items-center footer-content">
                 <div class="mode-fc">       
-                  <p class="caption">Mode: <span id="mode">Head Movement</span></p> 
+                  <p class="caption">Mode: <span id="mode">N/A</span></p> 
                 </div>
               </div>
             </div>
@@ -85,16 +233,32 @@
                 </div>
               </div>
             </div>
-            <div class="col-2 g-0">
-              <div class="container-fluid d-flex justify-content-around align-items-center footer-content" id="page-container">
-              </div>
-            </div>
-            <div class="col-1 g-0">
-              <div class="container-fluid d-flex justify-content-center align-items-center footer-content">
-                <div class="info-fc">
-                  <img src="../icon/info.png" class="icon-content">
+            <div class="col-3 g-0" style="position: relative;">
+              <div class="row mx-auto footer-overlay" id="" style="position: absolute; height: 100%; width: 100%; opacity: 100%;">
+                <div class="col-8 g-0" style="border: 0; border-right: 1px solid black;">
+                  <div class="container-fluid d-flex justify-content-around align-items-center footer-content" id="page-container">
+                  </div>
                 </div>
-              </div>
+                <div class="col-4 g-0" style="border: 0; border-left: 1px solid black;">
+                  <div class="container-fluid d-flex justify-content-center align-items-center footer-content">
+                    <div class="info-fc">
+                      <img src="../icon/info.png" class="icon-content">
+                    </div>
+                  </div>
+                </div>
+              </div>  
+              <div class="row mx-auto footer-overlay" id="" style="position: absolute; height: 100%; width: 100%; opacity: 0%;">
+                <div class="col" style="border: 0;">
+                  <div class="container-fluid d-flex justify-content-center align-items-center footer-content" id="page-container">
+                    <div class="mode-fc" style="padding-right: 2vh;">       
+                      <p class="caption" style="font-family: Roboto_Regular; text-align: right;">Keluar</p> 
+                    </div>
+                    <div class="keluar-fc">
+                      <img src="../icon/logout.png" class="icon-content">
+                    </div>
+                  </div>
+                </div>
+              </div>  
             </div>
           </div>
       </section>

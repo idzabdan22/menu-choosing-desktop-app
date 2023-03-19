@@ -1,15 +1,20 @@
 window.addEventListener("load", (e) => {
   const videoElement = document.querySelector("video");
-  // alert("Connection Established");
+  const cam2 = document.querySelector(".camera-body");
 
   const handleStream = (stream) => {
+    const loading = document.querySelector(".loading");
+    loading.style.opacity = "0%";
     videoElement.srcObject = stream;
     videoElement.onloadedmetadata = (e) => videoElement.play();
   };
 
+  // windows.EAPI.openFrontCamera(async (_event) => {
+
+  // });
+
   window.EAPI.startStream(async (_event, sourceId) => {
     try {
-      console.log("NYALA NIH");
       const stream = await navigator.mediaDevices.getUserMedia({
         audio: false,
         video: {
@@ -18,9 +23,9 @@ window.addEventListener("load", (e) => {
             chromeMediaSourceId: sourceId,
 
             // minWidth: 720,
-            // maxWidth: 720,
             // minHeight: 600,
-            // maxHeight: 600,
+            maxWidth: 600,
+            maxHeight: 500,
           },
         },
       });

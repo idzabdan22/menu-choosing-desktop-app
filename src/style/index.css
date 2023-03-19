@@ -57,6 +57,7 @@ body {
   background-size: cover;
   width: inherit;
   height: inherit;
+  overflow: hidden;
 }
 
 /* END OF BOOTSTRAP GENERAL STYLE SECTION */
@@ -97,7 +98,7 @@ body {
 }
 
 /* COL */
-#menu-content-container { 
+#menu-content-container {
   position: relative;
   background-color: black;
 }
@@ -155,6 +156,131 @@ body {
   height: 100%;
 }
 
+/* INFO STYLE SECTION */
+.info-header {
+  height: 10%;
+  background-color: #cbeef3;
+  border-bottom: 2.5px solid black;
+}
+
+.info-body {
+  height: 85%;
+  background-color: white;
+  padding: 25px;
+}
+
+.info-footer {
+  height: 5%;
+  padding: 5px;
+}
+
+.info-footer-caption {
+  display: block;
+  font-size: 2.5vh;
+  font-family: Roboto_Regular;
+  color: black;
+}
+
+.info-show-countdown {
+  font-weight: bold;
+}
+
+.info-container {
+  background-color: white;
+  height: inherit;
+}
+
+.card-component {
+  width: 30%;
+  height: 45%;
+  background-color: #8ecae6;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.card-icon {
+  width: 17vh;
+  height: 17vh;
+  margin-left: -3vh;
+}
+
+.card-header {
+  height: 70%;
+}
+
+.card-logo {
+  width: fit-content;
+  height: 100%;
+}
+
+.card-desc {
+  width: 70%;
+  height: 100%;
+  padding-left: 4vh;
+}
+
+.card-desc-component-left {
+  margin-right: 0.5vh;
+  width: 16vh;
+  height: 16vh;
+  background-color: #023047;
+  border: #ffb703 solid 3px;
+  border-radius: 10px;
+}
+
+.card-desc-component-right {
+  margin-left: 0.5vh;
+  width: 16vh;
+  height: 16vh;
+  background-color: #023047;
+  border: #ffb703 solid 3px;
+  border-radius: 10px;
+}
+
+.card-desc-component-single {
+  margin-right: 0.5vh;
+  width: 33vh;
+  height: 16vh;
+  background-color: #023047;
+  border: #ffb703 solid 3px;
+  border-radius: 10px;
+}
+
+.card-desc-component-caption {
+  display: block;
+  font-family: Roboto;
+  color: #ffb703;
+  font-size: 4vh;
+  margin: auto 0;
+}
+
+.card-body {
+  height: 30%;
+  background-color: #ffb703;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border-top: 4px black solid;
+}
+
+.card-body-container {
+  width: 100%;
+  height: 100%;
+  padding: 0 5px;
+}
+
+.card-body-text {
+  display: block;
+  margin: auto 0;
+  font-weight: 450;
+  text-align: justify;
+}
+
+#info-layer  {
+  background-color: #023047;
+  opacity: 0%;
+}
+/* END OF INFO STYLE SECTION */
+
 /* END OF MAIN CONTENT STYLE SECTION */
 
 /* FOOTER STYLE SECTION */
@@ -182,6 +308,11 @@ body {
   height: 10vh;
 }
 
+.keluar-fc {
+  width: 10vh;
+  height: 10vh;
+}
+
 .caption {
   line-height: 100%;
   font-size: 5.3vh;
@@ -204,26 +335,22 @@ body {
 /* CAMERA STYLE SECTION */
 .cam-header {
   height: 10%;
+  width: 100%;
 }
 
 .camera {
   background-color: white;
   height: 90%;
-  padding: 0 5vh;
+  padding: 2vh;
+  margin: auto 0;
 }
 
-/* #cam-1 {
-  border-right: 0.5px solid black;
-  border-top: 1px solid black;
-  border-left: 1px solid black;
-  border-bottom: 1px solid black;
+.camera-body {
+  height: 100%;
+  position: relative;
 }
 
-#cam-2 {
-  border-right: 1px solid black;
-  border-top: 1px solid black;
-  border-left: 0.5px solid black;
-  border-bottom: 1px solid black;
-} */
-
-/* END OF CAMERA STYLE SECTION */
+#camera-layer  {
+  background-color: #023047;
+  opacity: 0%;
+}

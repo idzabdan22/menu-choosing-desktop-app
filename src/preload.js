@@ -3,4 +3,5 @@ const { ipcRenderer, contextBridge } = require("electron");
 
 contextBridge.exposeInMainWorld("EAPI", {
   startStream: (callback) => ipcRenderer.on("SET_SOURCE", callback),
+  getStream: () => ipcRenderer.send("GET_SOURCE_ID"),
 });
