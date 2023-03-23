@@ -159,7 +159,7 @@ body {
 /* INFO STYLE SECTION */
 .info-header {
   height: 10%;
-  background-color: #72EAFB;
+  background-color: #72eafb;
   border-bottom: 2.5px solid black;
 }
 
@@ -194,7 +194,7 @@ body {
   width: 30%;
   height: 45%;
   background-color: #8ecae6;
-  border-radius: 10px;
+  border-radius: 5px;
   overflow: hidden;
 }
 
@@ -257,8 +257,6 @@ body {
 .card-body {
   height: 30%;
   background-color: #ffb703;
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
   border-top: 4px black solid;
 }
 
@@ -275,7 +273,7 @@ body {
   text-align: justify;
 }
 
-#info-layer  {
+#info-layer {
   background-color: #023047;
   opacity: 0%;
 }
@@ -323,12 +321,33 @@ body {
 }
 
 #footer-container {
-  background-color: #72EAFB;
+  background-color: #72eafb;
   height: 15vh;
 }
 
 #back-icon {
   transform: rotate(180deg);
+}
+
+.footer-overlay {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  opacity: 0%;
+}
+
+#footer-overlay-home {
+  opacity: 100%;
+}
+
+.footer-col-left {
+  border: 0;
+  border-right: 1px solid black;
+}
+
+.footer-col-right {
+  border: 0;
+  border-left: 1px solid black;
 }
 /* END OF FOOTER STYLE SECTION */
 
@@ -350,7 +369,7 @@ body {
   position: relative;
 }
 
-#camera-layer  {
+#camera-layer {
   background-color: #023047;
   opacity: 0%;
 }

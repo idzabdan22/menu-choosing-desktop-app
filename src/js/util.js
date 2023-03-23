@@ -53,5 +53,4 @@ export const clicked_column = async (col_n, blink, text) => {
       timesRun++;
     }, 100);
   });
-  return interval;
 };

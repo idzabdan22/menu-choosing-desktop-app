@@ -1,0 +1,8 @@
+device id: 9e069a44e8cb834ae27c40b1cd76c940005ffd7d47871c4617fbb8a6b1d45eb0
+device label: Integrated Webcam (0c45:64d2)
+
+device id: 5690a3b5f313cc739520836f0bbbee458453aa22cec01ebe98a7fe0b6d735c4d
+device label: UVC Camera (046d:0825) (046d:0825)
+
+device id: 23b0def062383c25c3f9fcec70b6fc5bd65e8fb294e92c1cc0e028eec6b63f11
+device label: UVC Camera (046d:081b) (046d:081b)

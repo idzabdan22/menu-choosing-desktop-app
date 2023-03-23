@@ -1,31 +1,28 @@
 window.addEventListener("load", (e) => {
-  const videoElement = document.querySelector("video");
-  const cam2 = document.querySelector(".camera-body");
+  const videoElement = document.querySelectorAll("video");
+  let stream = "";
+  const loading = document.querySelectorAll(".loading");
 
   const handleStream = (stream) => {
-    const loading = document.querySelector(".loading");
-    loading.style.opacity = "0%";
-    videoElement.srcObject = stream;
-    videoElement.onloadedmetadata = (e) => videoElement.play();
+    loading[1].style.opacity = "0%";
+    videoElement[1].srcObject = stream;
+    videoElement[1].onloadedmetadata = (e) => videoElement[1].play();
   };
 
-  // windows.EAPI.openFrontCamera(async (_event) => {
-
-  // });
+  window.EAPI.closeStream(async (_event) => {
+    stream.getVideoTracks()[0].stop();
+    videoElement[1].srcObject = null;
+    // loading[1].style.opacity = "100%";
+  });
 
   window.EAPI.startStream(async (_event, sourceId) => {
     try {
-      const stream = await navigator.mediaDevices.getUserMedia({
+      stream = await navigator.mediaDevices.getUserMedia({
         audio: false,
         video: {
           mandatory: {
             chromeMediaSource: "desktop",
             chromeMediaSourceId: sourceId,
-
-            // minWidth: 720,
-            // minHeight: 600,
-            maxWidth: 600,
-            maxHeight: 500,
           },
         },
       });

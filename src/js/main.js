@@ -3,7 +3,8 @@
 import MessageHandler from "./messageHandler";
 
 window.addEventListener("load", async (e) => {
-  const ws = new WebSocket("ws://127.0.0.1:3000/ws");
+  const ws = new WebSocket("ws://127.0.0.1:3000");
+  const msgHandler = new MessageHandler(ws);
 
   const command = async (cmd, msgHandler, ms) => {
     await new Promise((resolve) =>
@@ -24,24 +25,23 @@ window.addEventListener("load", async (e) => {
     // await command("1", msgHandler, 3000);
     // await command("Ya", msgHandler, 3000);
     // await command("Keluar", msgHandler, 30000);
-    await command("Info", msgHandler, 3000);
+    // await command("Info", msgHandler, 3000);
     // await command("Back", msgHandler);
   };
 
   ws.addEventListener("open", async (e) => {
     try {
-      const msgHandler = new MessageHandler(ws);
       await msgHandler.init();
-      testCases(msgHandler);
+      // testCases(msgHandler);
     } catch (error) {
       alert("connection failed");
       console.log(error);
     }
   });
 
-  ws.addEventListener("message", (e) => {
-    // alert(e.data);
-    console.log(e.data);
+  ws.addEventListener("message", (event) => {
+    let incomingMessage = event.data;
+    msgHandler.receiveMessage(incomingMessage);
   });
 
   ws.addEventListener("error", (e) => {
@@ -49,6 +49,6 @@ window.addEventListener("load", async (e) => {
   });
 
   ws.addEventListener("close", (e) => {
-    alert("Connection Error");
+    alert("Connection Closed");
   });
 });

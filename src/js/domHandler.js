@@ -8,7 +8,10 @@ const DOMHandler = function () {
   this.menuContainer = document.getElementById("menu-layer");
   this.infoContainer = document.getElementById("info-layer");
   this.cameraContainer = document.getElementById("camera-layer");
-  this.url = "http://127.0.0.1:3000";
+  this.footerOverlayHome = document.getElementById("footer-overlay-home");
+  this.footerOverlayInMenu = document.getElementById("footer-overlay-in-menu");
+  this.url = "http://127.0.0.1:3001";
+  this.timerCountDown = 10000; // ms
 };
 
 DOMHandler.prototype.createDisplay = async function (page) {
@@ -141,16 +144,36 @@ DOMHandler.prototype.deletePageButton = function () {
   }
 };
 
-DOMHandler.prototype.switchLayer = function (layer) {
+DOMHandler.prototype.switchLayer = async function (layer) {
   if (layer === "info") {
     this.infoContainer.style.opacity = "100%";
     this.cameraContainer.style.opacity = "0%";
+    const infoShowCnt = document.querySelector(".info-show-countdown");
+    infoShowCnt.textContent = this.timerCountDown / 1000;
+    let cnt = this.timerCountDown - 1000;
+    return await new Promise((resolve, reject) => {
+      const timerCountDown = setInterval(() => {
+        if (cnt < 1000) {
+          clearInterval(timerCountDown);
+          this.switchLayer("home");
+          resolve(true);
+        }
+        infoShowCnt.textContent = cnt / 1000;
+        cnt -= 1000;
+      }, 1000);
+    });
   } else if (layer === "camera") {
     this.infoContainer.style.opacity = "0%";
     this.cameraContainer.style.opacity = "100%";
+    this.footerOverlayHome.style.opacity = "0%";
+    this.footerOverlayInMenu.style.opacity = "100%";
+    return true;
   } else {
     this.infoContainer.style.opacity = "0%";
     this.cameraContainer.style.opacity = "0%";
+    this.footerOverlayHome.style.opacity = "100%";
+    this.footerOverlayInMenu.style.opacity = "0%";
+    return true;
   }
 };
 
@@ -164,6 +187,16 @@ DOMHandler.prototype.requestStream = function () {
   } catch (error) {
     console.log("FAILED", error);
   }
+};
+
+DOMHandler.prototype.closeStream = function () {
+  // const videoElement = document.querySelectorAll("video");
+  // videoElement.forEach((element) => {
+  //   element.srcObject = null;
+  // });
+  window.EAPI.triggerCloseStream();
+  const modeText = document.querySelector("#mode");
+  modeText.textContent = "N/A";
 };
 
 export default DOMHandler;

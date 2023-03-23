@@ -1,6 +1,7 @@
 "use strict";
 
 import DOMHandler from "./domHandler";
+import axios from "axios";
 
 import {
   blinking_column,
@@ -10,19 +11,25 @@ import {
 
 const MessageHandler = function (websocket) {
   this.domHandler = new DOMHandler();
-  this.chosenState = 0;
+  this.chosenState = 1; //change to 0
   this.chosenColumn = 0;
   this.websocket = websocket;
   this.blinking = false;
   this.currentPage = 1;
   this.menuData = "";
   this.allPages = 0;
+  this.isReceiveCommand = true;
+  this.url = "http://127.0.0.1:3001";
 };
 
 MessageHandler.prototype.init = async function () {
-  const data = await this.domHandler.createDisplay(1);
-  this.allPages = data["allPages"];
-  this.getAllColumn(data["data"]);
+  try {
+    const data = await this.domHandler.createDisplay(1);
+    this.allPages = data["allPages"];
+    this.getAllColumn(data["data"]);
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 MessageHandler.prototype.commandHandler = async function (message) {
@@ -30,15 +37,15 @@ MessageHandler.prototype.commandHandler = async function (message) {
     case "Ya":
       if (this.chosenState !== 0) {
         try {
-          await clicked_column(
-            this.chosenColumn,
-            this.blinking,
-            this.menuData[this.chosenState - 1].name
-          );
+          // await clicked_column(
+          //   this.chosenColumn,
+          //   this.blinking,
+          //   this.menuData[this.chosenState - 1].name
+          // );
           let cmd_id = this.menuData[this.chosenState - 1].id;
-          this.websocket.send(`${cmd_id}`);
-          this.chosenState = 0;
-          this.domHandler.switchLayer("camera");
+          await axios.post(`${this.url}/command=${cmd_id}`);
+          // this.chosenState = 0; // uncomment
+          await this.domHandler.switchLayer("camera");
           this.domHandler.requestStream();
         } catch (error) {
           console.log("error when sending data to websocket");
@@ -53,8 +60,10 @@ MessageHandler.prototype.commandHandler = async function (message) {
       }
       break;
     case "Mati":
+      this.isReceiveCommand = false;
       break;
     case "Nyala":
+      this.isReceiveCommand = true;
       break;
     case "Next":
       // update page + 1
@@ -78,13 +87,15 @@ MessageHandler.prototype.commandHandler = async function (message) {
       break;
     case "Keluar":
       try {
-        this.websocket.send("0");
-        this.domHandler.switchLayer("home");
+        await axios.post(`${this.url}/command=0`);
+        await this.domHandler.switchLayer("home");
+        this.domHandler.closeStream();
       } catch (error) {}
       break;
     case "Info":
       try {
-        this.domHandler.switchLayer("info");
+        this.isReceiveCommand = false;
+        this.isReceiveCommand = await this.domHandler.switchLayer("info");
       } catch (error) {}
       break;
     default:
@@ -99,16 +110,20 @@ MessageHandler.prototype.getAllColumn = function (menuData) {
 
 MessageHandler.prototype.receiveMessage = function (message) {
   let isNumber = Number(message) ? true : false;
-  if (isNumber) {
-    this.chosenColumn = this.allColumn[Number(message) - 1];
-    if (this.chosenState !== Number(message)) {
-      // changing state and changing display to blinking in column
-      stop_blinking_column(this.chosenColumn, this.blinking);
-      this.blinking = blinking_column(this.chosenColumn);
-      this.chosenState = Number(message);
-    } else return;
+  if (!this.isReceiveCommand && message !== "Nyala") {
+    return;
   } else {
-    this.commandHandler(message);
+    if (isNumber) {
+      this.chosenColumn = this.allColumn[Number(message) - 1];
+      if (this.chosenState !== Number(message)) {
+        // changing state and changing display to blinking in column
+        stop_blinking_column(this.chosenColumn, this.blinking);
+        this.blinking = blinking_column(this.chosenColumn);
+        this.chosenState = Number(message);
+      } else return;
+    } else {
+      this.commandHandler(message);
+    }
   }
 };
 

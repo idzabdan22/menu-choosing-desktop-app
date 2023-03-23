@@ -1,4 +1,3 @@
-// import { app, BrowserWindow } from "electron";
 const { app, BrowserWindow, desktopCapturer, ipcMain } = require("electron");
 const path = require("path");
 
@@ -15,8 +14,17 @@ const createWindow = () => {
     },
   });
 
+  ipcMain.on("CLOSE_STREAM", async (_event) => {
+    try {
+      win.webContents.send("CLOSE_ALL_STREAM");
+    } catch (error) {
+      console.log(error);
+    }
+  });
+
   ipcMain.on("GET_SOURCE_ID", async (_event) => {
     try {
+      win.webContents.send("SET_STATIC_STREAM");
       do {
         const sources = await desktopCapturer.getSources({
           types: ["window", "screen"],
