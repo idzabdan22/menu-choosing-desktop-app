@@ -24,8 +24,6 @@ const MessageHandler = function (websocket) {
 
 MessageHandler.prototype.init = async function () {
   try {
-    const data = await this.domHandler.createDisplay(1);
-    this.allPages = data["allPages"];
     this.getAllColumn(data["data"]);
   } catch (error) {
     console.log(error);
