@@ -149,9 +149,11 @@ body {
   width: inherit;
   height: 100%;
 }
+
 /* INFO STYLE SECTION */
 #info-layer {
   background-color: white;
+  opacity: 100%;
 }
 
 #info-layer .col {
@@ -160,7 +162,6 @@ body {
 }
 
 #info-layer .row {
-  opacity: 0%;
   width: 100%;
   height: inherit;
 }
@@ -359,7 +360,7 @@ body {
 /* CAMERA STYLE SECTION */
 #camera-layer {
   background-color: #023047;
-  opacity: 100%;
+  opacity: 0%;
 }
 
 #camera-layer .col-6 {
