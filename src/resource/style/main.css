@@ -1,0 +1,153 @@
+@font-face {
+  font-family: roboto;
+  src: url("../font/Roboto_Slab/static/RobotoSlab-ExtraBold.ttf");
+  /* src: url("../resource/font/Roboto_Slab/static/RobotoSlab-ExtraBold.ttf"); */
+}
+
+@font-face {
+  font-family: roboto_medium;
+  src: url("../font/Roboto_Slab/static/RobotoSlab-Medium.ttf");
+  /* src: url("../resource/font/Roboto_Slab/static/RobotoSlab-Medium.ttf"); */
+}
+
+@font-face {
+  font-family: roboto_regular;
+  src: url("../font/Roboto_Slab/static/RobotoSlab-Regular.ttf");
+  /* src: url("../resource/font/Roboto_Slab/static/RobotoSlab-Regular.ttf"); */
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  margin: auto 0;
+  padding: 0;
+  color: black;
+  font-family: roboto_regular;
+  box-sizing: border-box;
+}
+
+#main-container {
+  background-color: #dd2d4a;
+  width: 100%;
+  height: 100%;
+  margin: auto 0;
+  padding: 0;
+}
+
+/* BOOTSTRAP GENERAL STYLE SECTION */
+.col,
+.col-1,
+.col-2,
+.col-3,
+.col-4,
+.col-5,
+.col-6,
+.col-7,
+.col-8,
+.col-9,
+.col-10,
+.col-11,
+.col-12 {
+  border: 1px solid black;
+}
+
+.icon-content {
+  background-size: cover;
+  width: inherit;
+  height: inherit;
+  overflow: hidden;
+}
+/* END OF BOOTSTRAP GENERAL STYLE SECTION */
+
+/* MAIN CONTENT STYLE SECTION */
+.clicked-container {
+  width: 100%;
+  height: 100%;
+  background-color: #cbeef3;
+  transform: scale(1, 1);
+}
+
+.content-container {
+  height: 85vh;
+  width: 100%;
+  position: relative;
+  background-color: white;
+}
+
+.overlay {
+  width: inherit;
+  height: inherit;
+  position: absolute;
+}
+
+.row-main {
+  width: 100%;
+  height: 42.5vh;
+}
+
+.main-content {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  padding: 15px;
+  z-index: 2;
+}
+
+/* COL */
+#menu-content-container {
+  position: relative;
+  background-color: black;
+}
+
+.warning {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #dd2d4a;
+  opacity: 0%;
+  z-index: 1;
+}
+
+.content-card {
+  width: 100%;
+  height: 100%;
+  background-color: #cbeef3;
+  position: relative;
+}
+
+.number {
+  margin: 0px auto;
+  margin-top: -2vh;
+  padding-left: 2.5vh;
+  font-size: 10vh;
+  font-family: Roboto;
+  color: black;
+}
+
+.number-card-container {
+  width: fit-content;
+  height: fit-content;
+  position: absolute;
+}
+
+.icon-container {
+  width: 9vw;
+  height: 9vw;
+  margin-bottom: 3.5vh;
+}
+
+.caption-card-container {
+  width: inherit;
+}
+
+.caption-container {
+  width: inherit;
+  height: inherit;
+  margin-bottom: 1.5vh;
+}
+
+.icon-card-container {
+  width: inherit;
+  height: 100%;
+}

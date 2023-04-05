@@ -1,7 +1,7 @@
 export const blinking_column = (col_n) => {
   let warning_div = col_n.querySelector(".warning");
 
-  warning_div.style.display = "block";
+  // warning_div.style.display = "block";
 
   let op = 0;
 
@@ -17,8 +17,8 @@ export const blinking_column = (col_n) => {
 };
 
 export const stop_blinking_column = (col_n, blinkId) => {
+  console.log(col_n);
   let warning_div = col_n.querySelector(".warning");
-  warning_div.style.display = "none";
   clearInterval(blinkId);
   warning_div.style.opacity = "0%";
 };
@@ -27,7 +27,6 @@ export const clicked_column = async (col_n, blink, text) => {
   let modeText = document.querySelector("#mode");
   let warning_div = col_n.querySelector(".warning");
 
-  warning_div.style.display = "none";
   warning_div.style.opacity = "0%";
   clearInterval(blink);
 

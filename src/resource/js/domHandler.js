@@ -11,7 +11,7 @@ const DOMHandler = function () {
   this.footerOverlayHome = document.getElementById("footer-overlay-home");
   this.footerOverlayInMenu = document.getElementById("footer-overlay-in-menu");
   this.url = "http://127.0.0.1:3001";
-  this.timerCountDown = 10000; // ms
+  this.timerCountDown = 10000; 
 };
 
 DOMHandler.prototype.createDisplay = async function (page) {
@@ -52,35 +52,36 @@ DOMHandler.prototype.showPageButton = function (page, allPages) {
     if (page === 1) {
       this.pageContainer.insertAdjacentHTML(
         "beforeend",
-        `<a class="btn d-block" style="width: fit-content; height: fit-content;">
-              <div class="" style="width: 10vh; height: 10vh;">
-                <img src="../icon/next.png" class="icon-content">
+        `<a class="btn d-block">
+              <div class="page-fc">
+                <img src="../resource/icon/next.png" class="icon-content">
               </div>
           </a>`
       );
     } else if (page >= 2 && page < allPages) {
       this.pageContainer.insertAdjacentHTML(
         "beforeend",
-        `<a class="btn d-block" style="width: fit-content; height: fit-content;">
-              <div class="" style="width: 10vh; height: 10vh;">
-                <img src="../icon/next.png" class="icon-content" id="back-icon">
+        `<a class="btn d-block">
+              <div class="page-fc">
+                <img src="../resource/icon/next.png" class="icon-content" id="back-icon">
               </div>
           </a>`
       );
       this.pageContainer.insertAdjacentHTML(
         "beforeend",
-        `<a class="btn d-block" style="width: fit-content; height: fit-content;">
-              <div class="" style="width: 10vh; height: 10vh;">
-                <img src="../icon/next.png" class="icon-content">
+        `<a class="btn d-block">
+              <div class="page-fc">
+                <img src="../resource/icon/next.png" class="icon-content">
               </div>
           </a>`
       );
+
     } else {
       this.pageContainer.insertAdjacentHTML(
         "beforeend",
-        `<a class="btn d-block" style="width: fit-content; height: fit-content;">
-              <div class="" style="width: 10vh; height: 10vh;">
-                <img src="../icon/next.png" class="icon-content" id="back-icon">
+        `<a class="btn d-block">
+              <div class="page-fc">
+                <img src="../resource/icon/next.png" class="icon-content" id="back-icon">
               </div>
           </a>`
       );

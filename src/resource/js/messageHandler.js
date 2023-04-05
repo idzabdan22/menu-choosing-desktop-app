@@ -11,7 +11,7 @@ import {
 
 const MessageHandler = function (websocket) {
   this.domHandler = new DOMHandler();
-  this.chosenState = 1; //change to 0
+  this.chosenState = 0; 
   this.chosenColumn = 0;
   this.websocket = websocket;
   this.blinking = false;
@@ -20,10 +20,14 @@ const MessageHandler = function (websocket) {
   this.allPages = 0;
   this.isReceiveCommand = true;
   this.url = "http://127.0.0.1:3001";
+  this.allColumn = "";
+  this.blink_column_exist = false;
 };
 
 MessageHandler.prototype.init = async function () {
   try {
+    const data = await this.domHandler.createDisplay(1);
+    this.allPages = data["allPages"];
     this.getAllColumn(data["data"]);
   } catch (error) {
     console.log(error);
@@ -32,38 +36,39 @@ MessageHandler.prototype.init = async function () {
 
 MessageHandler.prototype.commandHandler = async function (message) {
   switch (message) {
-    case "Ya":
+    case "oke":
       if (this.chosenState !== 0) {
         try {
-          // await clicked_column(
-          //   this.chosenColumn,
-          //   this.blinking,
-          //   this.menuData[this.chosenState - 1].name
-          // );
+          await clicked_column(
+            this.chosenColumn,
+            this.blinking,
+            this.menuData[this.chosenState - 1].name
+          );
           let cmd_id = this.menuData[this.chosenState - 1].id;
           await axios.post(`${this.url}/command=${cmd_id}`);
-          // this.chosenState = 0; // uncomment
+          this.chosenState = 0;
           await this.domHandler.switchLayer("camera");
           this.domHandler.requestStream();
+          this.isReceiveCommand = false;
         } catch (error) {
           console.log("error when sending data to websocket");
           console.log(error);
         }
       }
       break;
-    case "Tidak":
+    case "tidak":
       if (this.chosenState !== 0) {
         stop_blinking_column(this.chosenColumn, this.blinking);
         this.chosenState = 0;
       }
       break;
-    case "Mati":
+    case "mati":
       this.isReceiveCommand = false;
       break;
-    case "Nyala":
+    case "nyala":
       this.isReceiveCommand = true;
       break;
-    case "Next":
+    case "next":
       // update page + 1
       if (this.currentPage + 1 > this.allPages) {
         return;
@@ -73,7 +78,7 @@ MessageHandler.prototype.commandHandler = async function (message) {
         this.currentPage++;
       }
       break;
-    case "Back":
+    case "back":
       // update page - 1
       if (this.currentPage - 1 < 1) {
         return;
@@ -83,14 +88,14 @@ MessageHandler.prototype.commandHandler = async function (message) {
         this.currentPage--;
       }
       break;
-    case "Keluar":
+    case "keluar":
       try {
         await axios.post(`${this.url}/command=0`);
         await this.domHandler.switchLayer("home");
         this.domHandler.closeStream();
       } catch (error) {}
       break;
-    case "Info":
+    case "info":
       try {
         this.isReceiveCommand = false;
         this.isReceiveCommand = await this.domHandler.switchLayer("info");
@@ -108,17 +113,17 @@ MessageHandler.prototype.getAllColumn = function (menuData) {
 
 MessageHandler.prototype.receiveMessage = function (message) {
   let isNumber = Number(message) ? true : false;
-  if (!this.isReceiveCommand && message !== "Nyala") {
+  if ((!this.isReceiveCommand && message !== "nyala")) {
     return;
   } else {
     if (isNumber) {
-      this.chosenColumn = this.allColumn[Number(message) - 1];
-      if (this.chosenState !== Number(message)) {
-        // changing state and changing display to blinking in column
+      if (this.blink_column_exist) {
         stop_blinking_column(this.chosenColumn, this.blinking);
-        this.blinking = blinking_column(this.chosenColumn);
-        this.chosenState = Number(message);
-      } else return;
+      }
+      this.chosenColumn = this.allColumn[Number(message) - 1];
+      this.blinking = blinking_column(this.chosenColumn);
+      this.chosenState = Number(message);
+      this.blink_column_exist = true;
     } else {
       this.commandHandler(message);
     }

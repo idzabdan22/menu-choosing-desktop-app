@@ -32,7 +32,6 @@ window.addEventListener("load", async (e) => {
   ws.addEventListener("open", async (e) => {
     try {
       await msgHandler.init();
-      // testCases(msgHandler);
     } catch (error) {
       alert("connection failed");
       console.log(error);

@@ -1,16 +1,19 @@
 @font-face {
   font-family: roboto;
-  src: url("../style/font/Roboto_Slab/static/RobotoSlab-ExtraBold.ttf");
+  src: url("../font/Roboto_Slab/static/RobotoSlab-ExtraBold.ttf");
+  /* src: url("../resource/font/Roboto_Slab/static/RobotoSlab-ExtraBold.ttf"); */
 }
 
 @font-face {
   font-family: roboto_medium;
-  src: url("../style/font/Roboto_Slab/static/RobotoSlab-Medium.ttf");
+  src: url("../font/Roboto_Slab/static/RobotoSlab-Medium.ttf");
+  /* src: url("../resource/font/Roboto_Slab/static/RobotoSlab-Medium.ttf"); */
 }
 
 @font-face {
   font-family: roboto_regular;
-  src: url("../style/font/Roboto_Slab/static/RobotoSlab-Regular.ttf");
+  src: url("../font/Roboto_Slab/static/RobotoSlab-Regular.ttf");
+  /* src: url("../resource/font/Roboto_Slab/static/RobotoSlab-Regular.ttf"); */
 }
 
 html,
@@ -104,7 +107,6 @@ body {
   background-color: #dd2d4a;
   opacity: 0%;
   z-index: 1;
-  display: none;
 }
 
 .content-card {
@@ -153,7 +155,7 @@ body {
 /* INFO STYLE SECTION */
 #info-layer {
   background-color: white;
-  opacity: 100%;
+  opacity: 0%;
 }
 
 #info-layer .col {

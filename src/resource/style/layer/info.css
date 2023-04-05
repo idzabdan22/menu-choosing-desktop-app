@@ -1,0 +1,127 @@
+#info-layer {
+  background-color: white;
+  opacity: 0%;
+}
+
+#info-layer .col {
+  width: 100%;
+  height: inherit;
+}
+
+#info-layer .row {
+  width: 100%;
+  height: inherit;
+}
+
+.info-header {
+  width: 100%;
+  height: 10%;
+  background-color: #72eafb;
+  border-bottom: 2px solid black;
+}
+
+.info-body {
+  width: 100%;
+  height: 85%;
+  padding: 20px;
+}
+
+.card-component {
+  width: 30%;
+  height: 45%;
+  background-color: #8ecae6;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.card-header {
+  width: 100%;
+  height: 70%;
+}
+
+.card-logo {
+  width: fit-content;
+  height: 100%;
+}
+
+.card-icon {
+  width: 17vh;
+  height: 17vh;
+  margin-left: -3vh;
+}
+
+.info-footer {
+  width: 100%;
+  height: 5%;
+  padding: 5px;
+}
+
+.info-footer-caption {
+  display: block;
+  font-size: 2.5vh;
+  font-family: roboto_regular;
+  color: black;
+}
+
+.info-show-countdown {
+  font-weight: bold;
+}
+
+.card-desc {
+  width: 70%;
+  height: 100%;
+  padding-left: 4vh;
+}
+
+.card-desc .card {
+  background-color: #023047;
+  border: #ffb703 solid 3px;
+  border-radius: 10px;
+}
+
+.card-desc .left {
+  width: 16vh;
+  height: 16vh;
+  margin-right: 0.5vh;
+}
+
+.card-desc .right {
+  width: 16vh;
+  height: 16vh;
+  margin-left: 0.5vh;
+}
+
+.card-desc .single {
+  width: 33vh;
+  height: 16vh;
+  margin-right: 0.5vh;
+}
+
+.card-desc .card .caption {
+  display: block;
+  font-family: roboto_regular;
+  color: #ffb703;
+  font-size: 4vh;
+  margin: auto 0;
+  font-weight: bold;
+}
+
+.card-body {
+  width: 100%;
+  height: 30%;
+  background-color: #ffb703;
+  border-top: 4px black solid;
+}
+
+.card-body .frame {
+  width: 100%;
+  height: 100%;
+  padding: 0 5px;
+}
+
+.card-body .text {
+  display: block;
+  margin: auto 0;
+  font-weight: 450;
+  text-align: justify;
+}
