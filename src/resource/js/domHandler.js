@@ -5,13 +5,14 @@ import axios from "axios";
 const DOMHandler = function () {
   this.pageContainer = document.getElementById("page-container");
   this.footerContainer = document.querySelector("#footer-container");
-  this.menuContainer = document.getElementById("menu-layer");
+  this.menuContainer = document.getElementById("menu-container");
   this.infoContainer = document.getElementById("info-layer");
   this.cameraContainer = document.getElementById("camera-layer");
   this.footerOverlayHome = document.getElementById("footer-overlay-home");
   this.footerOverlayInMenu = document.getElementById("footer-overlay-in-menu");
+  this.dimLayer = document.querySelector(".dim");
   this.url = "http://127.0.0.1:3001";
-  this.timerCountDown = 10000; 
+  this.timerCountDown = 10000;
 };
 
 DOMHandler.prototype.createDisplay = async function (page) {
@@ -32,6 +33,14 @@ DOMHandler.prototype.createDisplay = async function (page) {
   } catch (error) {
     console.log(error);
   }
+};
+
+DOMHandler.prototype.dimScreen = function () {
+  this.dimLayer.style.opacity = "75%";
+};
+
+DOMHandler.prototype.undimScreen = function () {
+  this.dimLayer.style.opacity = "0%"; 
 };
 
 DOMHandler.prototype.deleteRowMenu = function () {
@@ -75,7 +84,6 @@ DOMHandler.prototype.showPageButton = function (page, allPages) {
               </div>
           </a>`
       );
-
     } else {
       this.pageContainer.insertAdjacentHTML(
         "beforeend",

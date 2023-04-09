@@ -4,3 +4,10 @@
 4. Laboratorium
 5. Akademik
 6. Ruang Baca
+
+
+to do:
+1. camera layout one or two.
+2. Ain's template.
+3. grid menu UI.
+4. 

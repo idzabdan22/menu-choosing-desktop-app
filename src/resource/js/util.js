@@ -1,10 +1,6 @@
 export const blinking_column = (col_n) => {
   let warning_div = col_n.querySelector(".warning");
-
-  // warning_div.style.display = "block";
-
   let op = 0;
-
   let blinking = setInterval(() => {
     if (op >= 100) {
       op = 0;
@@ -12,12 +8,10 @@ export const blinking_column = (col_n) => {
     warning_div.style.opacity = `${op}%`;
     op += 5;
   }, 75);
-
   return blinking;
 };
 
 export const stop_blinking_column = (col_n, blinkId) => {
-  console.log(col_n);
   let warning_div = col_n.querySelector(".warning");
   clearInterval(blinkId);
   warning_div.style.opacity = "0%";
@@ -34,7 +28,6 @@ export const clicked_column = async (col_n, blink, text) => {
     let timesRun = 0;
     let index = 95;
     let data = 0;
-
     const interval = setInterval(() => {
       if (timesRun > 1) {
         clearInterval(interval);
