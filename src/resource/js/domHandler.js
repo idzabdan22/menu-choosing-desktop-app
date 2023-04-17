@@ -40,7 +40,7 @@ DOMHandler.prototype.dimScreen = function () {
 };
 
 DOMHandler.prototype.undimScreen = function () {
-  this.dimLayer.style.opacity = "0%"; 
+  this.dimLayer.style.opacity = "0%";
 };
 
 DOMHandler.prototype.deleteRowMenu = function () {
@@ -153,6 +153,23 @@ DOMHandler.prototype.deletePageButton = function () {
   }
 };
 
+DOMHandler.prototype.setVideoFrame = function (frame_count) {
+  if (frame_count < 2) {
+    // set one video frame
+    const rearCamera = document.getElementById("cam-1");
+    rearCamera.style.display = "none";
+  } else {
+    const rearCamera = document.getElementById("cam-1");
+    const frontCamera = document.getElementById("cam-2");
+    const allCamera = document.querySelectorAll("video");
+    allCamera.forEach((camera) => {
+      camera.srcObject = null;
+    });
+    rearCamera.style.display = "block";
+    frontCamera.style.display = "block";
+  }
+};
+
 DOMHandler.prototype.switchLayer = async function (layer) {
   if (layer === "info") {
     this.infoContainer.style.opacity = "100%";
@@ -186,9 +203,9 @@ DOMHandler.prototype.switchLayer = async function (layer) {
   }
 };
 
-DOMHandler.prototype.requestStream = function () {
+DOMHandler.prototype.requestStream = function (window_count, flag) {
   try {
-    window.EAPI.getStream();
+    window.EAPI.getStream(window_count, flag);
     const loading = document.querySelectorAll(".loading");
     loading.forEach((element) => {
       element.style.opacity = "100%";
@@ -199,10 +216,6 @@ DOMHandler.prototype.requestStream = function () {
 };
 
 DOMHandler.prototype.closeStream = function () {
-  // const videoElement = document.querySelectorAll("video");
-  // videoElement.forEach((element) => {
-  //   element.srcObject = null;
-  // });
   window.EAPI.triggerCloseStream();
   const modeText = document.querySelector("#mode");
   modeText.textContent = "N/A";

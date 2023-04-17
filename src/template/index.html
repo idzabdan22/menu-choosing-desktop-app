@@ -24,7 +24,7 @@
       <div class="overlay">
         <div id="menu-layer">
           <div id="menu-container"></div>
-          <div class="dim">abc</div>
+          <div class="dim"></div>
         </div>
       </div>
       <!-- end of main-row layer -->
@@ -175,8 +175,8 @@
       <!-- camera-show layer -->
       <div class="overlay" id="camera-layer">
         <div class="row mx-auto d-flex align-items-center justify-content-center">
-          <div class="col-6 g-0">
-            <div class="cam-header d-flex align-items-center justify-content-center" id="cam-1">
+          <div class="col-6 g-0" id="cam-1">
+            <div class="cam-header d-flex align-items-center justify-content-center">
               <div>
                 <h2>KAMERA BELAKANG</h2>
               </div>
@@ -184,18 +184,18 @@
             <div class="camera">
               <div class="camera-body">
                 <div class="video-container">
-                  <video id="camera-2"></video>
+                  <video id="rear-camera"></video>
                 </div>
-                <div class="loading d-flex align-items-center justify-content-center">
+                <div class="loading d-flex align-items-center justify-content-center" id="loading-rear">
                   <div>
-                    <img src="../resource/icon/spinner_fix.gif" class="icon-content">
+                    <img src="../resource/icon/spinner-fix-unscreen.gif" class="icon-content">
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          <div class="col-6 g-0 info-container">
-            <div class="cam-header d-flex align-items-center justify-content-center" id="cam-2">
+          <div class="col-6 g-0" id="cam-2">
+            <div class="cam-header d-flex align-items-center justify-content-center">
               <div>
                 <h2>KAMERA DEPAN</h2>
               </div>
@@ -203,11 +203,11 @@
             <div class="camera">
               <div class="camera-body">
                 <div class="video-container">
-                  <video src="" id="camera-2"></video>
+                  <video id="front-camera"></video>
                 </div>
-                <div class="loading d-flex align-items-center justify-content-center">
+                <div class="loading d-flex align-items-center justify-content-center" id="loading-front">
                   <div>
-                    <img src="../resource/icon/spinner_fix.gif" class="icon-content">
+                    <img src="../resource/icon/spinner-fix-unscreen.gif" class="icon-content">
                   </div>
                 </div>
               </div>

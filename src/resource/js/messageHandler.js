@@ -93,8 +93,14 @@ MessageHandler.prototype.commandHandler = async function (message) {
           let cmd_id = this.menuData[this.chosenState - 1].id;
           this.layerState = "camera";
           await axios.post(`${this.url}/command=${cmd_id}`);
+          this.domHandler.setVideoFrame(
+            this.menuData[this.chosenState - 1].window_count
+          );
           await this.domHandler.switchLayer("camera");
-          this.domHandler.requestStream();
+          this.domHandler.requestStream(
+            this.menuData[this.chosenState - 1].window_count,
+            this.menuData[this.chosenState - 1].flag
+          );
           this.chosenState = 0;
         } catch (error) {
           console.log("error when sending data to websocket");
@@ -118,6 +124,7 @@ MessageHandler.prototype.commandHandler = async function (message) {
       break;
     case "next":
       // update page + 1
+      // this.layerState = "info";
       if (this.currentPage + 1 > this.allPages) {
         return;
       } else {
@@ -125,9 +132,11 @@ MessageHandler.prototype.commandHandler = async function (message) {
         this.getAllColumn(data["data"]);
         this.currentPage++;
       }
+      // this.layerState = "menu";
       break;
     case "back":
       // update page - 1
+      // this.layerState = "info";
       if (this.currentPage - 1 < 1) {
         return;
       } else {
@@ -135,12 +144,14 @@ MessageHandler.prototype.commandHandler = async function (message) {
         this.getAllColumn(data["data"]);
         this.currentPage--;
       }
+      // this.layerState = "menu";
       break;
     case "keluar":
       try {
         await axios.post(`${this.url}/command=0`);
         await this.domHandler.switchLayer("home");
         this.domHandler.closeStream();
+        this.layerState = "menu";
       } catch (error) {
         console.log("error in camera layer");
       }
@@ -169,13 +180,15 @@ MessageHandler.prototype.receiveMessage = function (message) {
     if (this.stateManagement(this.layerState, message)) {
       let isNumber = Number(message) ? true : false;
       if (isNumber) {
-        if (this.blink_column_exist) {
-          stop_blinking_column(this.chosenColumn, this.blinking);
-        }
-        this.chosenColumn = this.allColumn[Number(message) - 1];
-        this.blinking = blinking_column(this.chosenColumn);
-        this.chosenState = Number(message);
-        this.blink_column_exist = true;
+        if (Number(message) <= this.allColumn.length) {
+          if (this.blink_column_exist) {
+            stop_blinking_column(this.chosenColumn, this.blinking);
+          }
+          this.chosenColumn = this.allColumn[Number(message) - 1];
+          this.blinking = blinking_column(this.chosenColumn);
+          this.chosenState = Number(message);
+          this.blink_column_exist = true;
+        } else return;
       } else {
         this.commandHandler(message);
       }
