@@ -124,7 +124,6 @@ MessageHandler.prototype.commandHandler = async function (message) {
       break;
     case "next":
       // update page + 1
-      // this.layerState = "info";
       if (this.currentPage + 1 > this.allPages) {
         return;
       } else {
@@ -132,11 +131,9 @@ MessageHandler.prototype.commandHandler = async function (message) {
         this.getAllColumn(data["data"]);
         this.currentPage++;
       }
-      // this.layerState = "menu";
       break;
     case "back":
       // update page - 1
-      // this.layerState = "info";
       if (this.currentPage - 1 < 1) {
         return;
       } else {
@@ -144,7 +141,6 @@ MessageHandler.prototype.commandHandler = async function (message) {
         this.getAllColumn(data["data"]);
         this.currentPage--;
       }
-      // this.layerState = "menu";
       break;
     case "keluar":
       try {
