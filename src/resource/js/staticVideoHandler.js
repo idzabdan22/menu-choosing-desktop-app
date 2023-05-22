@@ -1,23 +1,25 @@
 window.addEventListener("load", (e) => {
-  const rearCamera = document.querySelector("#rear-camera");
-  const loading = document.querySelector("#loading-rear");
-  const webcamUID = "(046d:0825)";
+  const frontCamera = document.querySelector("#front-camera");
+  const loading = document.querySelector("#loading-front");
+  //const webcamUID = "(046d:0825)";
+  const webcamUID = "(046d:082d)";
   let stream = "";
 
   const handleStream = (stream) => {
     loading.style.opacity = "0%";
-    rearCamera.srcObject = stream;
-    rearCamera.onloadedmetadata = (e) => rearCamera.play();
+    frontCamera.srcObject = stream;
+    frontCamera.onloadedmetadata = (e) => frontCamera.play();
   };
 
   window.EAPI.closeStream(async (_event) => {
     stream.getVideoTracks()[0].stop();
-    rearCamera.srcObject = null;
+    frontCamera.srcObject = null;
   });
 
   async function getDevices() {
     try {
       const devices = await navigator.mediaDevices.enumerateDevices();
+      console.log(devices);
       const source = devices.find(
         (device) =>
           device.kind === "videoinput" && device.label.includes(webcamUID)

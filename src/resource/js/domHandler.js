@@ -153,18 +153,31 @@ DOMHandler.prototype.deletePageButton = function () {
   }
 };
 
-DOMHandler.prototype.setVideoFrame = function (frame_count) {
+DOMHandler.prototype.setVideoFrame = function (frame_count, flag) {
+  const allCamera = document.querySelectorAll("video");
+  allCamera.forEach((camera) => {
+    camera.srcObject = null;
+  });
   if (frame_count < 2) {
     // set one video frame
     const rearCamera = document.getElementById("cam-1");
-    rearCamera.style.display = "none";
+    rearCamera.style.display = "block";
+    const frontCamera = document.getElementById("cam-2");
+    frontCamera.style.display = "block";
+    if (flag) {
+      const rearCamera = document.getElementById("cam-1");
+      rearCamera.style.display = "none";
+    } else {
+      const frontCamera = document.getElementById("cam-2");
+      frontCamera.style.display = "none";
+    }
   } else {
     const rearCamera = document.getElementById("cam-1");
     const frontCamera = document.getElementById("cam-2");
-    const allCamera = document.querySelectorAll("video");
-    allCamera.forEach((camera) => {
-      camera.srcObject = null;
-    });
+    // const allCamera = document.querySelectorAll("video");
+    // allCamera.forEach((camera) => {
+    //   camera.srcObject = null;
+    // });
     rearCamera.style.display = "block";
     frontCamera.style.display = "block";
   }

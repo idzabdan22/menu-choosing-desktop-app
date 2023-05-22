@@ -94,7 +94,8 @@ MessageHandler.prototype.commandHandler = async function (message) {
           this.layerState = "camera";
           await axios.post(`${this.url}/command=${cmd_id}`);
           this.domHandler.setVideoFrame(
-            this.menuData[this.chosenState - 1].window_count
+            this.menuData[this.chosenState - 1].window_count,
+            this.menuData[this.chosenState - 1].flag
           );
           await this.domHandler.switchLayer("camera");
           this.domHandler.requestStream(

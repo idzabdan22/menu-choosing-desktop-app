@@ -1,13 +1,22 @@
 window.addEventListener("load", (e) => {
-  const allCamera = document.querySelectorAll("video");
-  const loading = document.querySelectorAll(".loading");
+  // const allCamera = document.querySelectorAll("video");
+  const frontCamera = document.querySelector("#front-camera");
+  const rearCamera = document.querySelector("#rear-camera");
+  const loadingF = document.querySelector("#loading-front");
+  const loadingR = document.querySelector("#loading-rear");
+  // const loading = document.querySelectorAll(".loading");
   const streams = [];
   let stream = "";
 
   const handleStream = (stream, index) => {
-    loading[index].style.opacity = "0%";
-    allCamera[index].srcObject = stream;
-    allCamera[index].onloadedmetadata = (e) => allCamera[index].play();
+    if (index === 'rear') {
+      loadingR.style.opacity = '0%';
+      rearCamera.srcObject = stream;
+      rearCamera.onloadedmetadata = (e) => rearCamera.play();
+    }
+    // loading[index].style.opacity = "0%";
+    // allCamera[index].srcObject = stream;
+    // allCamera[index].onloadedmetadata = (e) => allCamera[index].play();
     // if (isSingleNoCam) {
     //   console.log("TRUEEEEEEE");
     //   loading[1].style.opacity = "0%";
@@ -41,7 +50,7 @@ window.addEventListener("load", (e) => {
             },
           },
         });
-        handleStream(stream, 1);
+        handleStream(stream, 'rear');
       } else {
         if (isSingleNoCam) {
           stream = await navigator.mediaDevices.getUserMedia({
@@ -53,7 +62,7 @@ window.addEventListener("load", (e) => {
               },
             },
           });
-          handleStream(stream, 1);
+          handleStream(stream, 'rear');
         } else {
           for (let index = 0; index < sourceId.length; index++) {
             stream = await navigator.mediaDevices.getUserMedia({
